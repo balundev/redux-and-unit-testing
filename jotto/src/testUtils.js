@@ -5,6 +5,6 @@ export const findByTestAttribute =(wrapper,value)=>{
 };
 
 export const checkProps = (component,propsToTest)=>{
-    const propsError = checkPropTypes(component.propTypes,propsToTest,'props',component.name)
+    const propsError = checkPropTypes(component.propTypes,propsToTest,'props',component.name);
     expect(propsError).toBeUndefined();
 };
