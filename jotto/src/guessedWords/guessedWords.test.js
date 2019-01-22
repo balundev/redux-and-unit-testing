@@ -4,7 +4,7 @@ import {findByTestAttribute,checkProps} from "../testUtils";
 import GuessedWords from "./guessedWords";
 
 const defaultProps = {
-    guessedWords: [{guessedWords: "train",letterMatch: 3}]
+    guessedWords: [{guessedWord: "train",letterMatch: 3}]
 };
 
 
@@ -37,5 +37,24 @@ describe("if there isn't any word guessed",()=>{
 
 
 describe("if there are words guessed",()=>{
+    let guessedWords= [{guessedWord: "train",letterMatch: 3},{guessedWord: "train",letterMatch: 3},{guessedWord: "train",letterMatch: 3}];
+    let wrapper;
+    beforeEach(()=>{
+        wrapper = setup({guessedWords})
+    });
 
+    test('render without error',()=>{
+        const component = findByTestAttribute(wrapper,'component-guessWords');
+        expect(component.length).toBe(1)
+    });
+
+    test('render guessed words section',()=>{
+        const guessedWordsDiv = findByTestAttribute(wrapper,'guessedWords-div');
+        expect(guessedWordsDiv.length).toBe(1)
+    });
+
+    test('correct number of guessed words',()=>{
+        const guessedWordNodes = findByTestAttribute(wrapper,'guessed-word');
+        expect(guessedWordNodes.length).toBe(guessedWords.length)
+    });
 });
